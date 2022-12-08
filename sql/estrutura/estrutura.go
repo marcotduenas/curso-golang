@@ -15,7 +15,7 @@ func exec(db *sql.DB, sql string) sql.Result{
 }
 
 func main(){
-    db, err := sql.Open("mysql", "root:12345678@tcp(localhost:1433)/")
+    db, err := sql.Open("mysql", "root:12345678@tcp(172.17.0.2:3306)/")
     if err != nil{
         panic(err)
     }
@@ -24,12 +24,10 @@ func main(){
 
     exec(db, "create database if not exists cursogo")
     exec(db, "use cursogo")
-    /*
     exec(db, `create table usuarios(
         id integer auto_increment,
         nome varchar(80),
         PRIMARY KEY (id)
     )`)
-    */
     exec(db, "insert into usuarios(nome) values ('João Silva')")
 }
